@@ -1,5 +1,14 @@
 # Random Notes on Async Process.
 
+# Multi-Threading
+- Each task that a process performs is a series of operations. The processing of these series of operations is called execution of a thread. A process can distribute tasks to multiple threads. (It creates threads by calling a function exposed by the OS. The OS creates, manages and schedules threads). 
+- The operating system usually ends up creating a much larger number of threads than the number of cores on the computer. To be able to handle so many threads, each core has to serve multiple threads. The operating system assigns a thread to be executed on a core for some time, and then uses the same core for another thread. This process is called scheduling, and the duration for which a thread is assigned to a processor/core is called a time slice. When the time slice for a thread is over, it is pre-empted (taken off the processor) and put aside for scheduling. Whenever the thread gets another time slice for itself, it resumes from where it had been pre-empted in the last run.
+- Problem while writing a multi-threaded application.
+    -   The process might slow down due to lock (to avoid race condition)
+    -   The process might hang up. (Let us say there are two variables which are protected using different mutexes. Now suppose there are two threads operating on the variables.)
+    -   Other synchronization methods to avoid race conditions are Semaphores and Condition Variables and even more higher level of synchronisation techniques provided by languages and operating systems
+- Understanding SMP hardware architecture. https://techtake.info/2016/10/13/symmetric-multi-processing-multi-threading-and-synchronisation-explained/#hw_arch
+
 # Process
 - Each process provides the resources needed to execute a program.
 - A process has a virtual address space, executable code, a security context, a unique process identifier, environment variables, a priority class, minimum and maximum working set sizes, and **at least one thread of execution**.
